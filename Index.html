@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Personal Website</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    .navbar {
+      background: #1a252f;
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      color: white;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+    }
+
+    .nav-links li {
+      margin-left: 1.5rem;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .nav-links a:hover, .nav-links a.active {
+      color: #00aaff;
+    }
+
+    .menu-toggle {
+      display: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .page {
+      display: none;
+      padding: 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    /* Creative Home Page Design */
+    .hero {
+      background: linear-gradient(135deg, #00aaff, #007acc, #004aad);
+      color: white;
+      text-align: center;
+      padding: 4rem 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(255,255,255,0.2), transparent);
+      opacity: 0.3;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      animation: fadeInDown 1s ease-in-out;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      animation: fadeInUp 1s ease-in-out 0.3s;
+      animation-fill-mode: backwards;
+    }
+
+    @keyframes fadeInDown {
+      0% { opacity: 0; transform: translateY(-20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .content {
+      margin: 1.5rem 0;
+    }
+
+    .content h2 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: #1a252f;
+    }
+
+    /* Biodata Styling */
+    .biodata {
+      background: #f9f9f9;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .biodata p {
+      margin: 0.5rem 0;
+    }
+
+    .biodata strong {
+      color: #00aaff;
+    }
+
+    .download-cv {
+      background: #00aaff;
+      color: white;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 4px;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 1rem;
+    }
+
+    .download-cv:hover {
+      background: #007acc;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      max-width: 500px;
+      margin: 1rem auto;
+    }
+
+    .contact-form input, .contact-form textarea {
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .contact-form button {
+      background: #00aaff;
+      color: white;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .contact-form button:hover {
+      background: #007acc;
+    }
+
+    footer {
+      background: #1a252f;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      position: relative;
+      width: 100%;
+    }
+
+    @media (max-width: 600px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        background: #1a252f;
+        width: 100%;
+        padding: 1rem 0;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .nav-links li {
+        margin: 0.5rem 0;
+        text-align: center;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="logo">Nisha</div>
+    <ul class="nav-links">
+      <li><a data-page="home" class="active">Home</a></li>
+      <li><a data-page="about">About</a></li>
+      <li><a data-page="contact">Contact</a></li>
+    </ul>
+    <div class="menu-toggle">☰</div>
+  </nav>
+
+  <!-- Page Sections -->
+  <section id="home" class="page active">
+    <div class="hero">
+      <h1>Welcome to our website</h1>
+      <p>Empowering the future through creativity and technology!</p>
+    </div>
+    <div class="content">
+      <h2>Hello!</h2>
+      <p>I'm a college student passionate about technology and innovation. Explore my journey and connect with me!</p>
+    </div>
+  </section>
+
+  <section id="about" class="page">
+    <div class="content">
+      <h2>About Me</h2>
+      <div class="biodata">
+        <p><strong>Name:</strong> Nisha</p>
+        <p><strong>Degree:</strong> B.Sc.Botany</p>
+        <p><strong>College:</strong> Kamaraj College </p>
+    
+        <p><strong>Year:</strong> 3rd Year</p>
+        <p><strong>Skills:</strong> Leadership,Positive thinker and Well speaker</p>
+        
+        <p><strong>Hobbies:</strong> Reading books and Listening songs</p>
+        <p><strong>Email:</strong> saravanans56072@gmail.com</p>
+        <a href=Resume.pdf download class="download-cv" >Download CV</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="page">
+    <div class="content">
+      <h2>Contact Me</h2>
+      <p>Reach out via the form below:</p>
+      <div class="contact-form">
+        <input type="text" id="name" placeholder="Your Name">
+        <input type="email" id="email" placeholder="Your Email">
+        <textarea id="message" placeholder="Your Message" rows="4"></textarea>
+        <button onclick="submitContact()">Send Message</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Nisha. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const links = document.querySelectorAll('.nav-links a');
+      const pages = document.querySelectorAll('.page');
+      const menuToggle = document.querySelector('.menu-toggle');
+      const navLinks = document.querySelector('.nav-links');
+
+      // Show/hide pages
+      function showPage(pageId) {
+        pages.forEach(page => page.classList.remove('active'));
+        document.getElementById(pageId).classList.add('active');
+        links.forEach(link => link.classList.remove('active'));
+        document.querySelector('[data-page="$ {pageId}"]').classList.add('active');
+        navLinks.classList.remove('active'); // Close mobile menu
+      }
+
+      // Handle nav clicks
+      links.forEach(link => {
+        link.addEventListener('click', () => {
+          const pageId = link.getAttribute('data-page');
+          showPage(pageId);
+        });
+      });
+
+      // Mobile menu toggle
+      menuToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+      });
+
+      // Contact form submission
+      window.submitContact = function() {
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const message = document.getElementById('message').value;
+        if (name && email && message) {
+          alert('Message sent! (Simulated)');
+          document.getElementById('name').value = '';
+          document.getElementById('email').value = '';
+          document.getElementById('message').value = '';
+        } else {
+          alert('Please fill out all fields.');
+        }
+      };
+
+    //   // Download CV simulation
+    //   window.downloadCV = function() {
+    //     alert('CV download initiated! (Simulated - Replace with actual CV file link)');
+    //     // In a real scenario, link to a CV file like: window.location.href = C:\Users\brama\Downloads\Resume.pdf''
+    //   };
+ });
+  </script>
+</body>
+</html>
